@@ -17,7 +17,7 @@ This project is a **long-term commitment** starting at **age 18**. Instead of a 
 * **4-Phase Roadmap**: Structured phases covering **Foundations**, **Core CS**, **Advanced Topics**, and **Final Revision**.
 * **Resource Hub**: Quick-access links to essential YouTube channels (Gate Smashers, Abdul Bari, Neso Academy) and **GATE Overflow** for PYQs.
 * **Zero-Backend Privacy**: Progress is saved locally in your browser’s `localStorage`—no login or database required.
-* * **Manual Sync**: Use the **Export/Import** buttons to migrate your progress string between devices (e.g., Laptop to Mobile).
+* **Manual Sync**: Use the **Export/Import** buttons to migrate your progress string between devices (e.g., Laptop to Mobile).
 
 ## 🗓️ The Roadmap At A Glance
 
