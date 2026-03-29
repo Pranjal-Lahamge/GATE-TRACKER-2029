@@ -111,7 +111,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
     <div class="ring-inner"><div class="ring-pct" id="oPct">0%</div><div class="ring-lbl">COMPLETE</div></div>
   </div>
 </div>
-  <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+<div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
   <button onclick="exportData()" style="background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); color: #60a5fa; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;">📤 EXPORT PROGRESS</button>
   <button onclick="importData()" style="background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); color: #34d399; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;">📥 IMPORT PROGRESS</button>
 </div>
@@ -152,7 +152,6 @@ tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
 <div id="yc"></div>
 <div class="motive"><p id="mot">🚀 You started at 18. You're ahead of everyone. Let's go!</p></div>
 </div>
-
 <script>
 const YT={gs:{n:"Gate Smashers",u:"https://www.youtube.com/@GateSmashers"},ab:{n:"Abdul Bari",u:"https://www.youtube.com/@abdul_bari"},na:{n:"Neso Academy",u:"https://www.youtube.com/@nesoacademy"},jn:{n:"Jenny's Lectures",u:"https://www.youtube.com/@JennyslecturesCSITNETJRF"},rv:{n:"Ravindrababu Ravula",u:"https://www.youtube.com/user/ravindrababulectures"},sj:{n:"Sanchit Jain",u:"https://www.youtube.com/@EasyEngineering"},bb:{n:"3Blue1Brown",u:"https://www.youtube.com/@3blue1brown"}};
 const P={dm:"https://gateoverflow.in/tag/discrete-mathematics",la:"https://gateoverflow.in/tag/linear-algebra",ca:"https://gateoverflow.in/tag/calculus",cp:"https://gateoverflow.in/tag/programming-in-c",ds:"https://gateoverflow.in/tag/data-structures",al:"https://gateoverflow.in/tag/algorithms",os:"https://gateoverflow.in/tag/operating-system",db:"https://gateoverflow.in/tag/databases",tc:"https://gateoverflow.in/tag/theory-of-computation",cn:"https://gateoverflow.in/tag/computer-networks",cd:"https://gateoverflow.in/tag/compiler-design",co:"https://gateoverflow.in/tag/co-and-architecture",dl:"https://gateoverflow.in/tag/digital-logic",pr:"https://gateoverflow.in/tag/probability",ga:"https://gateoverflow.in/tag/general-aptitude",all:"https://gateoverflow.in/"};
@@ -191,12 +190,46 @@ const DATA=[
   ]},
 ];
 
+// Helper functions for storage
 function ld(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}}
 function sv(k,v){localStorage.setItem(k,JSON.stringify(v))}
-const TS=ld('gate_v3');
+let TS=ld('gate_v3');
+
+// --- SYNC LOGIC ---
+function exportData() {
+  try {
+    const dataString = btoa(JSON.stringify(TS));
+    const tempInput = document.createElement("input");
+    document.body.appendChild(tempInput);
+    tempInput.value = dataString;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("🚀 Progress Code Copied!\n\nSave this code in your notes or send it to your other device.");
+  } catch(e) {
+    alert("❌ Export failed. Make sure you have progress saved.");
+  }
+}
+
+function importData() {
+  const code = prompt("Paste your progress code here:");
+  if (code) {
+    try {
+      const decoded = JSON.parse(atob(code));
+      if (confirm("This will overwrite your current progress. Continue?")) {
+        localStorage.setItem('gate_v3', JSON.stringify(decoded));
+        location.reload(); // Refresh to show new data
+      }
+    } catch (e) {
+      alert("❌ Invalid Code. Please try again.");
+    }
+  }
+}
 
 function init(){
-  const c=document.getElementById('yc');c.innerHTML='';
+  const c=document.getElementById('yc');
+  if(!c) return;
+  c.innerHTML='';
   DATA.forEach(y=>c.appendChild(buildY(y)));
   updateStats();
   document.getElementById('y1').classList.add('open');
@@ -237,33 +270,6 @@ function refS(sid,tot){const done=Array.from({length:tot},(_,i)=>!!TS[sid+'_'+i]
 function refY(sid){DATA.forEach(y=>{if(y.subs.find(s=>s.id===sid)){const{pct}=yProg(y);const el=document.getElementById('yp'+y.id);if(el)el.textContent=pct+'%';}});}
 function updateStats(){let tT=0,dT=0,tS=0,dS=0;DATA.forEach(y=>y.subs.forEach(s=>{tS++;const done=s.t.filter((_,i)=>!!TS[s.id+'_'+i]).length;if(done===s.t.length&&s.t.length>0)dS++;tT+=s.t.length;dT+=done;}));const pct=tT?Math.round(dT/tT*100):0;document.getElementById('sDone').textContent=dT;document.getElementById('sLeft').textContent=tT-dT;document.getElementById('sSubj').textContent=dS;document.getElementById('sfD').style.width=pct+'%';document.getElementById('sfL').style.width=(100-pct)+'%';document.getElementById('sfS').style.width=tS?Math.round(dS/tS*100)+'%':'0%';document.getElementById('oPct').textContent=pct+'%';document.getElementById('ring').style.strokeDashoffset=352-(pct/100*352);}
 function mot(){const m=["🚀 You started at 18. You're ahead of everyone!","💪 Every tick brings you closer to IIT!","🔥 Consistency beats intensity. Keep going!","⭐ GATE 2029 is yours — stay on this path!","🎯 Focus. Revise. Practice. Repeat!","🏆 Top rankers start early. You already did!"];let dT=0,tT=0;DATA.forEach(y=>y.subs.forEach(s=>{tT+=s.t.length;dT+=s.t.filter((_,i)=>!!TS[s.id+'_'+i]).length;}));const pct=tT?Math.round(dT/tT*100):0;if(pct>=75)m.unshift("🌟 75%+ done! Final stretch — PUSH HARD!");else if(pct>=50)m.unshift("🔥 Halfway! Most aspirants haven't even started!");else if(pct>=25)m.unshift("💡 25%+ done. Momentum is building!");document.getElementById('mot').textContent=m[Math.floor(Math.random()*Math.min(5,m.length))];}
-// --- SYNC LOGIC ---
-function exportData() {
-  const dataString = btoa(JSON.stringify(TS));
-  const tempInput = document.createElement("input");
-  document.body.appendChild(tempInput);
-  tempInput.value = dataString;
-  tempInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-  alert("🚀 Progress Code Copied!\n\nSave this code in your notes or send it to your other device.");
-}
 
-function importData() {
-  const code = prompt("Paste your progress code here:");
-  if (code) {
-    try {
-      const decoded = JSON.parse(atob(code));
-      if (confirm("This will overwrite your current progress. Continue?")) {
-        localStorage.setItem('gate_v3', JSON.stringify(decoded));
-        location.reload();
-      }
-    } catch (e) {
-      alert("❌ Invalid Code. Please try again.");
-    }
-  }
-}
 init();
 </script>
-</body>
-</html>
