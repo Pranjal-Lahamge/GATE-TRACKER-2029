@@ -231,6 +231,15 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 <!-- YEAR SECTIONS -->
 <div id="years-container"></div>
 
+  <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; padding: 0 20px;">
+  <button onclick="exportProgress()" style="flex: 1; max-width: 200px; padding: 12px; background: var(--bg3); border: 1px solid var(--y1); color: var(--y1); border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+    📤 EXPORT PROGRESS
+  </button>
+  <button onclick="importProgress()" style="flex: 1; max-width: 200px; padding: 12px; background: var(--bg3); border: 1px solid var(--y2); color: var(--y2); border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+    📥 IMPORT PROGRESS
+  </button>
+</div>
+
 <div class="motive">
   <p id="motive-text">🚀 You started at 18. You're ahead of everyone. Let's go!</p>
 </div>
@@ -595,6 +604,51 @@ renderAll();
 document.getElementById('y1').classList.add('open');
 document.getElementById('y1-body').style.display='block';
 showMotivation();
+
+// ════════════════════════════════════════════════════════════
+// SYNC LOGIC (EXPORT/IMPORT)
+// ════════════════════════════════════════════════════════════
+
+function exportProgress() {
+    // Your app uses two keys: 'gate_topics' and 'gate_subjects'
+    const topics = localStorage.getItem('gate_topics') || '{}';
+    const subjects = localStorage.getItem('gate_subjects') || '{}';
+    
+    // Combine them into one "Master String"
+    const backup = JSON.stringify({ topics: JSON.parse(topics), subjects: JSON.parse(subjects) });
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(backup).then(() => {
+        alert("🚀 PROGRESS COPIED!\n\nYour progress has been copied as a secret code. Paste this code into a message (WhatsApp/Email) to yourself, then open it on your other device.");
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        alert("Error copying code. Please try again.");
+    });
+}
+
+function importProgress() {
+    const code = prompt("📥 PASTE YOUR PROGRESS CODE HERE:");
+    
+    if (code) {
+        try {
+            const parsed = JSON.parse(code);
+            
+            // Validate that the code contains our data
+            if (parsed.topics) {
+                localStorage.setItem('gate_topics', JSON.stringify(parsed.topics));
+                if (parsed.subjects) localStorage.setItem('gate_subjects', JSON.stringify(parsed.subjects));
+                
+                alert("✅ SUCCESS!\n\nYour progress has been imported. The page will now refresh.");
+                location.reload();
+            } else {
+                alert("❌ INVALID CODE\n\nThat doesn't look like a valid tracker code. Please copy the full text from your other device.");
+            }
+        } catch (e) {
+            alert("❌ ERROR\n\nSomething went wrong. Make sure you copied the ENTIRE code string.");
+        }
+    }
+}
+  
 </script>
 </body>
 </html>
