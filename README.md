@@ -1,6 +1,6 @@
 # ⚡ GATE CSE 2029: The 4-Year Mission Control
 An interactive, browser-based roadmap and progress tracker for the **GATE Computer Science & IT** examination.
-
+---
 <p align="center">
   <strong>🔗 Access the Live Tracker:</strong> 
   <a href="https://pranjal-lahamge.github.io/GATE-TRACKER-2029/">
@@ -8,6 +8,7 @@ An interactive, browser-based roadmap and progress tracker for the **GATE Comput
   </a>
 </p>
 
+---
 
 ## 📌 The Vision
 This project is a **long-term commitment** starting at **age 18**. Instead of a static PDF, I built this interactive tracker to visualize a **4-year journey** (2025–2029) from my first year of B.Tech to my final target attempt in **February 2029**.
@@ -30,9 +31,9 @@ This project is a **long-term commitment** starting at **age 18**. Instead of a 
 
 ## 🚀 Technical Setup
 This is a single-file "App" designed for simplicity and speed.
-* **Languages**: HTML5, CSS3 (Modern UI with *Space Grotesk* & *JetBrains Mono* fonts), and Vanilla JavaScript.
-* **Assistance**: Built with the help of **Claude (Anthropic)** to structure the tracking logic and UI components.
-* **Hosting**: Deployed via **GitHub Pages** for easy access on mobile and desktop.
+* **Architecture:** Built using HTML5, CSS3, and Vanilla JavaScript.
+* **Assistance & Learning:** As a 1st-year **Computer Engineering** student, I used **Claude (AI)** to architect the initial UI and tracking logic. I am using this project as a practical way to learn **Software Logic** and **Version Control (Git)** alongside my core engineering studies.
+* **Deployment:** Hosted via **GitHub Pages** for cross-platform accessibility.
 
 ## 🎯 Exam Strategy (2029)
 * **Total Marks**: 100
@@ -47,7 +48,5 @@ This is a single-file "App" designed for simplicity and speed.
 1. **Clone** this repository.
 2. Open `index.html` in any browser (or view the live GitHub Pages link).
 3. **Check off** topics as you complete them; your progress persists automatically in your browser!
-
-
 
 
