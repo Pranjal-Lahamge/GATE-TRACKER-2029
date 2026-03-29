@@ -3,652 +3,267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GATE CSE 2029 — My Roadmap</title>
+<title>GATE CSE 2029 Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a0f;
-  --bg2: #111118;
-  --bg3: #1a1a24;
-  --border: rgba(255,255,255,0.08);
-  --text: #e8e8f0;
-  --muted: #8888a0;
-  --y1: #60a5fa;
-  --y1d: #1e3a5f;
-  --y2: #34d399;
-  --y2d: #064e3b;
-  --y3: #a78bfa;
-  --y3d: #3b1f6e;
-  --y4: #f87171;
-  --y4d: #5c1a1a;
-  --gold: #fbbf24;
-  --accent: #f472b6;
-}
+:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:rgba(255,255,255,0.08);--text:#e8e8f0;--muted:#8888a0;--gold:#fbbf24;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-
-/* BG grid */
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(96,165,250,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
-
-/* ── HERO ── */
-.hero{padding:60px 0 40px;text-align:center;}
-.hero-badge{display:inline-block;background:linear-gradient(135deg,#1e3a5f,#3b1f6e);border:1px solid rgba(96,165,250,0.3);border-radius:100px;padding:6px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--y1);letter-spacing:2px;margin-bottom:24px;}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:800;line-height:1;background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#f472b6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
-.hero-sub{font-size:16px;color:var(--muted);max-width:600px;margin:0 auto 32px;}
-
-/* ── STATS BAR ── */
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:40px;}
-.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;transition:transform 0.2s;}
-.stat-card:hover{transform:translateY(-2px);}
-.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:4px;}
-.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.stat-bar{height:4px;border-radius:2px;margin-top:10px;background:var(--border);}
-.stat-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
-
-/* ── PROGRESS RING ── */
-.progress-ring-wrap{display:flex;justify-content:center;margin-bottom:40px;}
-.ring-container{position:relative;width:160px;height:160px;}
-.ring-container svg{transform:rotate(-90deg);}
-.ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.ring-pct{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--text);}
-.ring-label{font-size:11px;color:var(--muted);letter-spacing:1px;}
-
-/* ── EXAM PATTERN ── */
-.exam-section{background:var(--bg3);border:1px solid rgba(251,191,36,0.3);border-radius:20px;padding:28px;margin-bottom:40px;}
-.section-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
-.exam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
-.exam-card{background:var(--bg2);border-radius:12px;padding:16px;border-left:3px solid var(--gold);}
-.exam-card-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
-.exam-card-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;color:var(--gold);}
-.pattern-table{width:100%;border-collapse:collapse;font-size:13px;}
-.pattern-table th{background:rgba(251,191,36,0.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:600;letter-spacing:0.5px;}
-.pattern-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);}
-.pattern-table tr:last-child td{border-bottom:none;}
-.pattern-table tr:hover td{background:rgba(255,255,255,0.03);}
-
-/* ── YEAR SECTIONS ── */
-.year-section{margin-bottom:32px;border-radius:20px;overflow:hidden;border:1px solid var(--border);}
-.year-header{padding:24px 28px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:opacity 0.2s;}
-.year-header:hover{opacity:0.9;}
-.year-header-left{display:flex;align-items:center;gap:16px;}
-.year-emoji{font-size:28px;}
-.year-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
-.year-sub{font-size:13px;opacity:0.75;margin-top:3px;}
-.year-progress{display:flex;align-items:center;gap:12px;}
-.year-pct{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;}
-.chevron{font-size:20px;transition:transform 0.3s;}
-.year-section.open .chevron{transform:rotate(180deg);}
-.year-body{display:none;padding:0 20px 20px;background:var(--bg2);}
-.year-section.open .year-body{display:block;}
-
-/* ── SUBJECT CARD ── */
-.subject-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;}
-.subject-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
-.subject-header:hover{background:rgba(255,255,255,0.02);}
-.subject-left{display:flex;align-items:center;gap:12px;}
-.subject-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;font-size:12px;}
-.subject-check.done{background:var(--y2);border-color:var(--y2);color:#000;}
-.subject-name{font-weight:600;font-size:14px;}
-.subject-count{font-size:11px;color:var(--muted);margin-top:2px;}
-.priority-badge{font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;letter-spacing:0.5px;}
-.p-high{background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);}
-.p-medium{background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);}
-.p-low{background:rgba(52,211,153,0.2);color:#34d399;border:1px solid rgba(52,211,153,0.3);}
-.subject-body{padding:0 18px 16px 18px;display:none;}
-.subject-card.open .subject-body{display:block;}
-
-/* ── TOPIC ITEMS ── */
-.topic-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
-.topic-item:last-child{border-bottom:none;}
-.topic-checkbox{width:18px;height:18px;border-radius:4px;border:2px solid rgba(255,255,255,0.2);cursor:pointer;flex-shrink:0;margin-top:1px;appearance:none;-webkit-appearance:none;transition:all 0.2s;position:relative;}
-.topic-checkbox:checked{background:currentColor;border-color:currentColor;}
-.topic-checkbox:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#000;font-size:11px;font-weight:700;}
-.topic-text{font-size:13px;color:var(--text);line-height:1.5;}
-.topic-text.checked-text{color:var(--muted);text-decoration:line-through;}
-
-/* ── PYQ / CHANNELS ── */
-.resources-section{margin-top:16px;padding:14px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid var(--border);}
-.resources-title{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;font-weight:600;}
-.resource-links{display:flex;flex-wrap:wrap;gap:8px;}
-.resource-link{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;font-size:12px;text-decoration:none;border:1px solid;transition:all 0.2s;font-weight:500;}
-.resource-link:hover{transform:translateY(-1px);}
-.rl-yt{color:#f87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08);}
-.rl-yt:hover{background:rgba(248,113,113,0.18);}
-.rl-pyq{color:#60a5fa;border-color:rgba(96,165,250,0.3);background:rgba(96,165,250,0.08);}
-.rl-pyq:hover{background:rgba(96,165,250,0.18);}
-.rl-notes{color:#34d399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);}
-.rl-notes:hover{background:rgba(52,211,153,0.18);}
-
-/* ── ELIGIBILITY ── */
-.elig-section{background:linear-gradient(135deg,#1e3a5f,#3b1f6e);border:1px solid rgba(96,165,250,0.2);border-radius:20px;padding:28px;margin-bottom:40px;}
-.elig-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;}
-.elig-item{background:rgba(0,0,0,0.3);border-radius:10px;padding:14px;}
-.elig-key{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);margin-bottom:5px;}
-.elig-val{font-size:14px;font-weight:600;color:var(--text);}
-.elig-val span{color:var(--gold);}
-
-/* ── MOTIVATIONAL ── */
-.motive{text-align:center;padding:40px 20px;margin-bottom:20px;}
-.motive p{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;background:linear-gradient(135deg,var(--y1),var(--y3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-@media(max-width:600px){
-  .stats-bar{grid-template-columns:repeat(2,1fr);}
-  .exam-grid{grid-template-columns:1fr;}
-  .elig-grid{grid-template-columns:1fr;}
-}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px 60px;position:relative;z-index:1;}
+.hero{padding:50px 0 30px;text-align:center;}
+.badge{display:inline-block;background:linear-gradient(135deg,#1e3a5f,#3b1f6e);border:1px solid rgba(96,165,250,0.3);border-radius:100px;padding:5px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60a5fa;letter-spacing:2px;margin-bottom:20px;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(32px,6vw,64px);font-weight:800;line-height:1;background:linear-gradient(135deg,#60a5fa,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;}
+.hero-sub{font-size:15px;color:var(--muted);}
+.ring-wrap{display:flex;justify-content:center;margin:28px 0;}
+.ring-box{position:relative;width:140px;height:140px;}
+.ring-box svg{transform:rotate(-90deg);}
+.ring-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-pct{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;}
+.ring-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;}
+.scard{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center;}
+.snum{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:3px;}
+.slbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.sbar{height:3px;border-radius:2px;margin-top:8px;background:var(--border);}
+.sfill{height:100%;border-radius:2px;transition:width .6s;}
+.infoblock{border-radius:18px;padding:22px;margin-bottom:24px;}
+.btitle{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.egrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.eitem{background:rgba(0,0,0,0.3);border-radius:8px;padding:11px;}
+.ek{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.4);margin-bottom:3px;}
+.ev{font-size:13px;font-weight:600;}
+.ev b{color:var(--gold);}
+.exgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.excard{background:var(--bg2);border-radius:9px;padding:12px;border-left:3px solid var(--gold);}
+.exlbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px;}
+.exval{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--gold);}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:rgba(251,191,36,0.1);color:var(--gold);padding:8px 11px;text-align:left;font-weight:600;}
+td{padding:8px 11px;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;font-weight:700;}
+tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.ysec{margin-bottom:24px;border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.yhdr{padding:20px 22px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:filter .2s;}
+.yhdr:hover{filter:brightness(1.1);}
+.yleft{display:flex;align-items:center;gap:12px;}
+.yemoji{font-size:24px;}
+.ytitle{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;}
+.ysub{font-size:12px;opacity:.7;margin-top:2px;}
+.yright{display:flex;align-items:center;gap:8px;}
+.ypct{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;}
+.chev{font-size:16px;transition:transform .3s;}
+.ysec.open .chev{transform:rotate(180deg);}
+.ybody{display:none;padding:10px 12px 12px;background:var(--bg2);}
+.ysec.open .ybody{display:block;}
+.scard2{background:var(--bg3);border:1px solid var(--border);border-radius:11px;margin-bottom:9px;overflow:hidden;}
+.shdr{padding:12px 15px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.shdr:hover{background:rgba(255,255,255,0.02);}
+.sleft{display:flex;align-items:center;gap:9px;}
+.schk{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:11px;font-weight:700;transition:all .2s;}
+.schk.done{background:#34d399;border-color:#34d399;color:#000;}
+.sname{font-weight:600;font-size:13px;}
+.scnt{font-size:11px;color:var(--muted);margin-top:1px;}
+.pbadge{font-size:10px;padding:2px 8px;border-radius:100px;font-weight:600;}
+.ph{background:rgba(239,68,68,.2);color:#f87171;border:1px solid rgba(239,68,68,.3);}
+.pm{background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.3);}
+.sbody{display:none;padding:0 15px 13px;}
+.scard2.open .sbody{display:block;}
+.trow{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.trow:last-of-type{border-bottom:none;}
+.tcb{width:16px;height:16px;border-radius:3px;border:2px solid rgba(255,255,255,.2);cursor:pointer;flex-shrink:0;margin-top:2px;appearance:none;-webkit-appearance:none;position:relative;transition:all .2s;}
+.tcb:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;font-weight:700;color:#000;}
+.tlbl{font-size:12px;line-height:1.5;cursor:pointer;}
+.tlbl.x{color:var(--muted);text-decoration:line-through;}
+.resbox{margin-top:11px;padding:11px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--border);}
+.reshd{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px;font-weight:600;}
+.rgrp{margin-bottom:7px;}
+.rgrp:last-child{margin-bottom:0;}
+.rglbl{font-size:9px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.rlinks{display:flex;flex-wrap:wrap;gap:6px;}
+.rl{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:11px;text-decoration:none;border:1px solid;transition:all .2s;font-weight:500;}
+.rl:hover{filter:brightness(1.25);transform:translateY(-1px);}
+.ryt{color:#f87171;border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.08);}
+.rpyq{color:#60a5fa;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.08);}
+.rnotes{color:#34d399;border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.08);}
+.motive{text-align:center;padding:36px 0 20px;}
+.motive p{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+@media(max-width:560px){.stats,.exgrid,.egrid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">⚡ GATE CSE 2029 TRACKER</div>
+  <div class="badge">⚡ GATE CSE 2029 TRACKER</div>
   <h1>My GATE Roadmap</h1>
-  <p class="hero-sub">4-Year Study Plan · Computer Science & IT · Started Age 18 · Target: GATE 2029</p>
+  <p class="hero-sub">4-Year Plan · Computer Science · Age 18 → Target GATE 2029</p>
 </div>
-
-<!-- OVERALL PROGRESS -->
-<div class="progress-ring-wrap">
-  <div class="ring-container">
-    <svg width="160" height="160" viewBox="0 0 160 160">
-      <circle cx="80" cy="80" r="65" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
-      <circle id="mainRing" cx="80" cy="80" r="65" fill="none" stroke="url(#ringGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="408" stroke-dashoffset="408"/>
-      <defs>
-        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#60a5fa"/>
-          <stop offset="50%" stop-color="#a78bfa"/>
-          <stop offset="100%" stop-color="#f472b6"/>
-        </linearGradient>
-      </defs>
+<div class="ring-wrap">
+  <div class="ring-box">
+    <svg width="140" height="140" viewBox="0 0 140 140">
+      <circle cx="70" cy="70" r="56" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+      <circle id="ring" cx="70" cy="70" r="56" fill="none" stroke="url(#rg)" stroke-width="10"
+        stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="352"/>
+      <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#60a5fa"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#f472b6"/>
+      </linearGradient></defs>
     </svg>
-    <div class="ring-text">
-      <div class="ring-pct" id="overallPct">0%</div>
-      <div class="ring-label">COMPLETE</div>
-    </div>
+    <div class="ring-inner"><div class="ring-pct" id="oPct">0%</div><div class="ring-lbl">COMPLETE</div></div>
   </div>
 </div>
-
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-card">
-    <div class="stat-num" id="s-done" style="color:#34d399">0</div>
-    <div class="stat-label">Topics Done</div>
-    <div class="stat-bar"><div class="stat-fill" id="sf-done" style="background:#34d399;width:0%"></div></div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-num" id="s-left" style="color:#f87171">0</div>
-    <div class="stat-label">Topics Left</div>
-    <div class="stat-bar"><div class="stat-fill" id="sf-left" style="background:#f87171;width:100%"></div></div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-num" id="s-subj" style="color:#60a5fa">0</div>
-    <div class="stat-label">Subjects Done</div>
-    <div class="stat-bar"><div class="stat-fill" id="sf-subj" style="background:#60a5fa;width:0%"></div></div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-num" style="color:#fbbf24">2029</div>
-    <div class="stat-label">Target Year</div>
-    <div class="stat-bar"><div class="stat-fill" style="background:#fbbf24;width:60%"></div></div>
+  <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+  <button onclick="exportData()" style="background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); color: #60a5fa; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;">📤 EXPORT PROGRESS</button>
+  <button onclick="importData()" style="background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); color: #34d399; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;">📥 IMPORT PROGRESS</button>
+</div>
+<div class="stats">
+  <div class="scard"><div class="snum" id="sDone" style="color:#34d399">0</div><div class="slbl">Topics Done</div><div class="sbar"><div class="sfill" id="sfD" style="background:#34d399;width:0%"></div></div></div>
+  <div class="scard"><div class="snum" id="sLeft" style="color:#f87171">0</div><div class="slbl">Topics Left</div><div class="sbar"><div class="sfill" id="sfL" style="background:#f87171;width:100%"></div></div></div>
+  <div class="scard"><div class="snum" id="sSubj" style="color:#60a5fa">0</div><div class="slbl">Subjects Done</div><div class="sbar"><div class="sfill" id="sfS" style="background:#60a5fa;width:0%"></div></div></div>
+  <div class="scard"><div class="snum" style="color:#fbbf24">2029</div><div class="slbl">Target Year</div><div class="sbar"><div class="sfill" style="background:#fbbf24;width:60%"></div></div></div>
+</div>
+<div class="infoblock" style="border:1px solid rgba(96,165,250,.2);background:linear-gradient(135deg,rgba(30,58,95,.4),rgba(59,31,110,.3));">
+  <div class="btitle" style="color:#60a5fa">📋 Eligibility</div>
+  <div class="egrid">
+    <div class="eitem"><div class="ek">Current Year</div><div class="ev">1st Year — <b>2025</b></div></div>
+    <div class="eitem"><div class="ek">Age</div><div class="ev"><b>18 yrs</b> — No age limit!</div></div>
+    <div class="eitem"><div class="ek">Practice Attempt</div><div class="ev"><b>GATE 2028</b> (3rd Year)</div></div>
+    <div class="eitem"><div class="ek">Main Target</div><div class="ev"><b>GATE 2029</b> (Final Year)</div></div>
+    <div class="eitem"><div class="ek">Exam Month</div><div class="ev"><b>February</b> every year</div></div>
+    <div class="eitem"><div class="ek">Score Valid</div><div class="ev"><b>3 Years</b> from result</div></div>
   </div>
 </div>
-
-<!-- ELIGIBILITY -->
-<div class="elig-section">
-  <div class="section-title" style="color:#60a5fa">📋 Eligibility & Key Dates</div>
-  <div class="elig-grid">
-    <div class="elig-item"><div class="elig-key">Current Year</div><div class="elig-val">1st Year B.Tech — <span>2025</span></div></div>
-    <div class="elig-item"><div class="elig-key">Age Right Now</div><div class="elig-val"><span>18 years</span> — No GATE age limit!</div></div>
-    <div class="elig-item"><div class="elig-key">First Eligible Attempt</div><div class="elig-val"><span>GATE 2028</span> (3rd Year Appearing)</div></div>
-    <div class="elig-item"><div class="elig-key">Main Target Attempt</div><div class="elig-val"><span>GATE 2029</span> (Final Year)</div></div>
-    <div class="elig-item"><div class="elig-key">Exam Month</div><div class="elig-val"><span>February</span> every year</div></div>
-    <div class="elig-item"><div class="elig-key">Score Valid For</div><div class="elig-val"><span>3 Years</span> from result</div></div>
+<div class="infoblock" style="border:1px solid rgba(251,191,36,.2);">
+  <div class="btitle" style="color:var(--gold)">🎯 GATE CS Exam Pattern</div>
+  <div class="exgrid">
+    <div class="excard"><div class="exlbl">Questions</div><div class="exval">65</div></div>
+    <div class="excard"><div class="exlbl">Total Marks</div><div class="exval">100</div></div>
+    <div class="excard"><div class="exlbl">Duration</div><div class="exval">3 Hours</div></div>
+    <div class="excard"><div class="exlbl">Mode</div><div class="exval">CBT Online</div></div>
+    <div class="excard"><div class="exlbl">MCQ Penalty</div><div class="exval">−1/3 mark</div></div>
+    <div class="excard"><div class="exlbl">NAT Penalty</div><div class="exval">Zero ✓</div></div>
   </div>
-</div>
-
-<!-- EXAM PATTERN -->
-<div class="exam-section">
-  <div class="section-title" style="color:var(--gold)">🎯 GATE CS Exam Pattern 2029</div>
-  <div class="exam-grid">
-    <div class="exam-card"><div class="exam-card-label">Total Questions</div><div class="exam-card-val">65</div></div>
-    <div class="exam-card"><div class="exam-card-label">Total Marks</div><div class="exam-card-val">100</div></div>
-    <div class="exam-card"><div class="exam-card-label">Duration</div><div class="exam-card-val">3 Hours</div></div>
-    <div class="exam-card"><div class="exam-card-label">Mode</div><div class="exam-card-val">CBT Online</div></div>
-    <div class="exam-card"><div class="exam-card-label">Negative Marking</div><div class="exam-card-val">1/3 (MCQ only)</div></div>
-    <div class="exam-card"><div class="exam-card-label">NAT Questions</div><div class="exam-card-val">No Penalty</div></div>
-  </div>
-  <table class="pattern-table">
-    <tr><th>Section</th><th>Questions</th><th>Marks</th><th>Question Type</th></tr>
-    <tr><td>General Aptitude</td><td>10</td><td>15</td><td>MCQ + MSQ + NAT</td></tr>
-    <tr><td>Engineering Mathematics</td><td>~13</td><td>~13</td><td>MCQ + NAT</td></tr>
-    <tr><td>Core CS Subjects</td><td>~42</td><td>~72</td><td>MCQ + MSQ + NAT</td></tr>
-    <tr><td><strong>Total</strong></td><td><strong>65</strong></td><td><strong>100</strong></td><td><strong>3 Hours</strong></td></tr>
+  <table><tr><th>Section</th><th>Qs</th><th>Marks</th><th>Type</th></tr>
+    <tr><td>General Aptitude</td><td>10</td><td>15</td><td>MCQ+NAT</td></tr>
+    <tr><td>Engineering Mathematics</td><td>~13</td><td>~13</td><td>MCQ+NAT</td></tr>
+    <tr><td>Core CS Subjects</td><td>~42</td><td>~72</td><td>MCQ+MSQ+NAT</td></tr>
+    <tr><td>Total</td><td>65</td><td>100</td><td>3 Hours</td></tr>
   </table>
 </div>
-
-<!-- YEAR SECTIONS -->
-<div id="years-container"></div>
-
-  <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; padding: 0 20px;">
-  <button onclick="exportProgress()" style="flex: 1; max-width: 200px; padding: 12px; background: var(--bg3); border: 1px solid var(--y1); color: var(--y1); border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-    📤 EXPORT PROGRESS
-  </button>
-  <button onclick="importProgress()" style="flex: 1; max-width: 200px; padding: 12px; background: var(--bg3); border: 1px solid var(--y2); color: var(--y2); border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-    📥 IMPORT PROGRESS
-  </button>
+<div id="yc"></div>
+<div class="motive"><p id="mot">🚀 You started at 18. You're ahead of everyone. Let's go!</p></div>
 </div>
-
-<div class="motive">
-  <p id="motive-text">🚀 You started at 18. You're ahead of everyone. Let's go!</p>
-</div>
-
-</div><!-- /wrap -->
 
 <script>
-// ════════════════════════════════════════════════════════════
-// DATA
-// ════════════════════════════════════════════════════════════
-const data = [
-  {
-    id:"y1", year:"Year 1", period:"2025–26", age:"18–19",
-    emoji:"📘", color:"#60a5fa", darkColor:"#1e3a5f",
-    theme:"Foundation — Maths & Programming",
-    subjects:[
-      { id:"y1s1", name:"Discrete Mathematics", priority:"High",
-        topics:["Propositional & First Order Logic","Sets, Relations & Functions","Partial Orders & Lattices","Groups (basics)","Permutations & Combinations","Graph Theory — Trees, Connectivity","Generating Functions & Recurrences"],
-        channels:[
-          {name:"Gate Smashers",url:"https://www.youtube.com/@GateSmashers",type:"yt"},
-          {name:"Knowledge Gate",url:"https://www.youtube.com/@KnowledgeGate",type:"yt"},
-        ],
-        pyq:[{name:"PYQ — Discrete Math (GATE CSE)",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/discrete-mathematics",type:"pyq"}],
-        notes:[{name:"Notes — GO Classroom",url:"https://goclassroom.in/courses/",type:"notes"}]
-      },
-      { id:"y1s2", name:"Linear Algebra", priority:"High",
-        topics:["Matrices & Determinants","Systems of Linear Equations","Eigenvalues & Eigenvectors","LU Decomposition basics"],
-        channels:[{name:"3Blue1Brown (Essence of LA)",url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",type:"yt"},{name:"Gate Smashers",url:"https://www.youtube.com/@GateSmashers",type:"yt"}],
-        pyq:[{name:"PYQ — Linear Algebra GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/linear-algebra",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y1s3", name:"Calculus", priority:"High",
-        topics:["Limits, Continuity, Differentiability","Mean Value Theorems","Maxima & Minima","Integration techniques","Sequences & Series"],
-        channels:[{name:"3Blue1Brown Calculus",url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr",type:"yt"},{name:"Gate Smashers Maths",url:"https://www.youtube.com/@GateSmashers",type:"yt"}],
-        pyq:[{name:"PYQ — Calculus GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/calculus",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y1s4", name:"C Programming", priority:"High",
-        topics:["Data Types, Operators, Control Flow","Functions & Recursion","Arrays, Strings & Pointers","Structures & File Handling","Big-O Complexity basics"],
-        channels:[{name:"Jenny's Lectures CS",url:"https://www.youtube.com/@JennyslecturesCSITNETJRF",type:"yt"},{name:"Neso Academy",url:"https://www.youtube.com/@nesoacademy",type:"yt"}],
-        pyq:[{name:"PYQ — C Programming GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/programming-and-data-structures",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y1s5", name:"General Aptitude — Verbal", priority:"Medium",
-        topics:["Reading Comprehension","Vocabulary & Grammar","Critical Reasoning","Sentence Completion"],
-        channels:[{name:"Unacademy GATE Aptitude",url:"https://www.youtube.com/results?search_query=gate+general+aptitude+verbal",type:"yt"}],
-        pyq:[{name:"PYQ — GA Verbal GATE",url:"https://www.gateoverflow.in/questions/gate2024/general-aptitude/verbal-ability",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y1s6", name:"General Aptitude — Numerical", priority:"Medium",
-        topics:["Number Theory & HCF/LCM","Percentage, Ratio, Proportion","Speed-Distance-Time","Work & Pipes","Data Interpretation"],
-        channels:[{name:"Unacademy GATE Aptitude",url:"https://www.youtube.com/results?search_query=gate+general+aptitude+numerical",type:"yt"}],
-        pyq:[{name:"PYQ — GA Numerical GATE",url:"https://www.gateoverflow.in/questions/gate2024/general-aptitude/numerical-ability",type:"pyq"}],
-        notes:[]
-      },
-    ]
-  },
-  {
-    id:"y2", year:"Year 2", period:"2026–27", age:"19–20",
-    emoji:"📗", color:"#34d399", darkColor:"#064e3b",
-    theme:"Core CS — DSA, OS, DBMS, TOC",
-    subjects:[
-      { id:"y2s1", name:"Data Structures", priority:"High",
-        topics:["Arrays, Linked Lists, Stacks, Queues","Trees — BST, AVL, B-Trees, Heaps","Graphs — BFS, DFS","Hashing & Collision Resolution","Sorting — Quick, Merge, Heap (complexity)","Searching — Binary Search variants"],
-        channels:[{name:"Abdul Bari (Algorithms)",url:"https://www.youtube.com/@abdul_bari",type:"yt"},{name:"Gate Smashers DSA",url:"https://www.youtube.com/@GateSmashers",type:"yt"}],
-        pyq:[{name:"PYQ — DS GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/data-structures",type:"pyq"}],
-        notes:[{name:"Striver's DSA Sheet",url:"https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/",type:"notes"}]
-      },
-      { id:"y2s2", name:"Algorithms", priority:"High",
-        topics:["Divide & Conquer","Greedy Algorithms","Dynamic Programming (LCS, 0/1 Knapsack, MCM)","Graph Algorithms — MST, Topological Sort","Shortest Paths — Dijkstra, Bellman-Ford","NP-Completeness","Amortised Analysis"],
-        channels:[{name:"Abdul Bari",url:"https://www.youtube.com/@abdul_bari",type:"yt"},{name:"William Fiset",url:"https://www.youtube.com/@WilliamFiset-videos",type:"yt"}],
-        pyq:[{name:"PYQ — Algorithms GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/algorithms",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y2s3", name:"Operating Systems", priority:"High",
-        topics:["Process Scheduling — FCFS, SJF, RR, Priority","Process Sync — Mutex, Semaphores, Deadlock","Memory Management — Paging, Segmentation","Virtual Memory & Page Replacement (FIFO, LRU)","File Systems & Allocation Methods","Disk Scheduling — SSTF, SCAN"],
-        channels:[{name:"Gate Smashers OS",url:"https://www.youtube.com/@GateSmashers",type:"yt"},{name:"Neso Academy OS",url:"https://www.youtube.com/@nesoacademy",type:"yt"}],
-        pyq:[{name:"PYQ — OS GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/operating-system",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y2s4", name:"Database Management Systems", priority:"High",
-        topics:["ER Model & Relational Model","Relational Algebra & SQL","Normalisation — 1NF to BCNF","ACID Properties & Transactions","Concurrency Control — 2PL","Indexing — B+ Trees","File Organisation"],
-        channels:[{name:"Gate Smashers DBMS",url:"https://www.youtube.com/@GateSmashers",type:"yt"},{name:"Sanchit Jain DBMS",url:"https://www.youtube.com/results?search_query=sanchit+jain+dbms+gate",type:"yt"}],
-        pyq:[{name:"PYQ — DBMS GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/databases",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y2s5", name:"Theory of Computation", priority:"High",
-        topics:["DFA, NFA, ε-NFA","Regular Expressions & Languages","CFG & Pushdown Automata","Pumping Lemma (Regular & CFL)","Turing Machines","Decidability & Undecidability","P, NP Complexity Classes"],
-        channels:[{name:"Sanchit Jain TOC",url:"https://www.youtube.com/results?search_query=sanchit+jain+theory+of+computation+gate",type:"yt"},{name:"Neso Academy TOC",url:"https://www.youtube.com/@nesoacademy",type:"yt"}],
-        pyq:[{name:"PYQ — TOC GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/theory-of-computation",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y2s6", name:"Probability & Statistics", priority:"Medium",
-        topics:["Random Variables (Discrete & Continuous)","Probability Distributions","Bayes Theorem","Mean, Variance, Standard Deviation","Conditional Probability"],
-        channels:[{name:"Gate Smashers Probability",url:"https://www.youtube.com/@GateSmashers",type:"yt"}],
-        pyq:[{name:"PYQ — Probability GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/probability",type:"pyq"}],
-        notes:[]
-      },
-    ]
-  },
-  {
-    id:"y3", year:"Year 3", period:"2027–28", age:"20–21",
-    emoji:"📙", color:"#a78bfa", darkColor:"#3b1f6e",
-    theme:"Advanced Topics + GATE 2028 Practice Attempt",
-    subjects:[
-      { id:"y3s1", name:"Computer Networks", priority:"High",
-        topics:["OSI & TCP/IP Models","Data Link — MAC, Error Detection, Sliding Window","Network Layer — IP, Subnetting, Routing","Transport Layer — TCP vs UDP, Flow Control","Application Layer — DNS, HTTP, SMTP","Network Security basics"],
-        channels:[{name:"Gate Smashers Networks",url:"https://www.youtube.com/@GateSmashers",type:"yt"},{name:"Ravindrababu Ravula",url:"https://www.youtube.com/results?search_query=ravindrababu+ravula+computer+networks",type:"yt"}],
-        pyq:[{name:"PYQ — Networks GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/computer-networks",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y3s2", name:"Compiler Design", priority:"High",
-        topics:["Lexical Analysis — DFA/NFA for tokens","LL(1) Parsing — First & Follow sets","Bottom-Up Parsing — LR(0), SLR, LALR, CLR","Semantic Analysis & SDT","Intermediate Code Generation","Code Optimisation basics"],
-        channels:[{name:"Gate Smashers Compiler",url:"https://www.youtube.com/@GateSmashers",type:"yt"},{name:"Ravindrababu Ravula Compiler",url:"https://www.youtube.com/results?search_query=ravindrababu+compiler+design+gate",type:"yt"}],
-        pyq:[{name:"PYQ — Compiler GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/compiler-design",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y3s3", name:"Computer Organisation & Architecture", priority:"High",
-        topics:["Number Systems & Representation","Boolean Algebra & Logic Gates","Combinational Circuits — MUX, Decoder, Adder","Sequential Circuits — Flip-Flops, Counters","CPU — ALU, Control Unit, Instruction Cycle","Memory Hierarchy — Cache, DRAM","Pipelining — Hazards","I/O Organisation"],
-        channels:[{name:"Gate Smashers COA",url:"https://www.youtube.com/@GateSmashers",type:"yt"},{name:"Neso Academy COA",url:"https://www.youtube.com/@nesoacademy",type:"yt"}],
-        pyq:[{name:"PYQ — COA GATE",url:"https://www.gateoverflow.in/questions/gate2024/computer-science-and-information-technology/computer-organization-and-architecture",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y3s4", name:"Mock Tests & GATE 2028 Attempt", priority:"High",
-        topics:["Join a GATE Test Series (Made Easy / GATE Academy)","Take 15–20 full mock tests","Solve GATE PYQ 2015–2027 (all subjects)","Appear in GATE 2028 — Feb 2028","Target: Score 50+ to benchmark yourself","Analyse weak areas after attempt"],
-        channels:[{name:"GATE Overflow (Practice)",url:"https://www.gateoverflow.in",type:"yt"},{name:"Made Easy Test Series",url:"https://madeeasy.in/test-series",type:"notes"}],
-        pyq:[{name:"All GATE PYQ (2010–2024)",url:"https://www.gateoverflow.in/exams",type:"pyq"}],
-        notes:[]
-      },
-    ]
-  },
-  {
-    id:"y4", year:"Year 4", period:"2028–29", age:"21–22",
-    emoji:"📕", color:"#f87171", darkColor:"#5c1a1a",
-    theme:"Full Revision + GATE 2029 — Main Target",
-    subjects:[
-      { id:"y4s1", name:"Semester 7 — Deep Revision", priority:"High",
-        topics:["Revise all subjects topic by topic","2 full mock tests per week","Solve all PYQs 2010–2028","Revise formula notebook daily","Focus on NAT questions — no penalty","Identify & eliminate weak areas"],
-        channels:[{name:"GATE Overflow Discussion",url:"https://www.gateoverflow.in",type:"yt"}],
-        pyq:[{name:"GATE CSE All PYQs",url:"https://www.gateoverflow.in/exams",type:"pyq"}],
-        notes:[{name:"GATE Notes — GO Classroom",url:"https://goclassroom.in",type:"notes"}]
-      },
-      { id:"y4s2", name:"Subject-Wise Final Revision", priority:"High",
-        topics:["DSA + Algorithms — aim for 100% accuracy","Engineering Maths — all theorems with examples","OS + DBMS — scheduling, page replacement numericals","TOC — re-derive all pumping lemma proofs","Networks — subnetting practice daily","COA — pipeline diagrams, cache miss calculations"],
-        channels:[{name:"Gate Smashers Revision",url:"https://www.youtube.com/@GateSmashers",type:"yt"}],
-        pyq:[{name:"GATE CSE PYQ Topic-Wise",url:"https://www.gateoverflow.in/questions",type:"pyq"}],
-        notes:[]
-      },
-      { id:"y4s3", name:"Final Sprint — Jan–Feb 2029", priority:"High",
-        topics:["Only mocks & revision — NO new topics","3 full mock tests per week","Analyse each test within 24 hours","Revise formula notebook every single day","GATE 2029 — February 2029 🎯","Stay calm — 4 years of prep behind you!"],
-        channels:[{name:"GATE 2029 Strategy Videos",url:"https://www.youtube.com/results?search_query=gate+2029+strategy+last+month",type:"yt"}],
-        pyq:[{name:"All GATE PYQs",url:"https://www.gateoverflow.in/exams",type:"pyq"}],
-        notes:[]
-      },
-    ]
-  }
+const YT={gs:{n:"Gate Smashers",u:"https://www.youtube.com/@GateSmashers"},ab:{n:"Abdul Bari",u:"https://www.youtube.com/@abdul_bari"},na:{n:"Neso Academy",u:"https://www.youtube.com/@nesoacademy"},jn:{n:"Jenny's Lectures",u:"https://www.youtube.com/@JennyslecturesCSITNETJRF"},rv:{n:"Ravindrababu Ravula",u:"https://www.youtube.com/user/ravindrababulectures"},sj:{n:"Sanchit Jain",u:"https://www.youtube.com/@EasyEngineering"},bb:{n:"3Blue1Brown",u:"https://www.youtube.com/@3blue1brown"}};
+const P={dm:"https://gateoverflow.in/tag/discrete-mathematics",la:"https://gateoverflow.in/tag/linear-algebra",ca:"https://gateoverflow.in/tag/calculus",cp:"https://gateoverflow.in/tag/programming-in-c",ds:"https://gateoverflow.in/tag/data-structures",al:"https://gateoverflow.in/tag/algorithms",os:"https://gateoverflow.in/tag/operating-system",db:"https://gateoverflow.in/tag/databases",tc:"https://gateoverflow.in/tag/theory-of-computation",cn:"https://gateoverflow.in/tag/computer-networks",cd:"https://gateoverflow.in/tag/compiler-design",co:"https://gateoverflow.in/tag/co-and-architecture",dl:"https://gateoverflow.in/tag/digital-logic",pr:"https://gateoverflow.in/tag/probability",ga:"https://gateoverflow.in/tag/general-aptitude",all:"https://gateoverflow.in/"};
+const N={goc:{n:"GO Classroom",u:"https://goclassroom.in"},ggcs:{n:"GFG GATE CS",u:"https://www.geeksforgeeks.org/gate-cs-notes-gq/"},ggds:{n:"GFG Data Structures",u:"https://www.geeksforgeeks.org/data-structures/"},ggal:{n:"GFG Algorithms",u:"https://www.geeksforgeeks.org/fundamentals-of-algorithms/"},ggos:{n:"GFG OS",u:"https://www.geeksforgeeks.org/operating-systems/"},ggdb:{n:"GFG DBMS",u:"https://www.geeksforgeeks.org/dbms/"},ggtc:{n:"GFG TOC",u:"https://www.geeksforgeeks.org/theory-of-computation-automata-tutorials/"},ggcn:{n:"GFG Networks",u:"https://www.geeksforgeeks.org/computer-network-tutorials/"},ggcd:{n:"GFG Compiler",u:"https://www.geeksforgeeks.org/compiler-design-tutorials/"},ggco:{n:"GFG COA",u:"https://www.geeksforgeeks.org/computer-organization-and-architecture-tutorials/"},stv:{n:"Striver DSA",u:"https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/"}};
+
+const DATA=[
+  {id:"y1",yr:"Year 1",p:"2025-26",age:"18-19",em:"📘",c:"#60a5fa",d:"#1e3a5f",th:"Foundation — Maths & Programming",subs:[
+    {id:"y1s1",nm:"Discrete Mathematics",pr:"High",t:["Propositional Logic — Truth tables, Tautology","First Order Logic — Quantifiers, Predicates","Sets, Relations & Functions","Partial Orders & Lattices — Hasse diagrams","Groups, Rings & Fields (basics)","Permutations & Combinations — Pigeonhole Principle","Graph Theory — Paths, Cycles, Trees, Planar graphs","Graph Colouring & Matching","Generating Functions","Recurrence Relations — Linear recurrences","Mathematical Induction"],ch:[YT.gs,YT.jn],pyq:[{n:"PYQ Discrete Maths",u:P.dm}],nt:[N.goc,N.ggcs]},
+    {id:"y1s2",nm:"Linear Algebra",pr:"High",t:["Matrices — Types, Operations, Transpose","Determinants — Properties, Cramer's Rule","Systems of Linear Equations — Consistency & Rank","Eigenvalues & Eigenvectors","Cayley-Hamilton Theorem","LU Decomposition","Orthogonality & Gram-Schmidt"],ch:[YT.gs,YT.bb],pyq:[{n:"PYQ Linear Algebra",u:P.la}],nt:[N.ggcs]},
+    {id:"y1s3",nm:"Calculus",pr:"High",t:["Limits & Continuity","Differentiability — Rules, Chain rule","Mean Value Theorems — Rolle's, LMVT","Maxima & Minima","Partial Derivatives & Gradient","Integration — Definite, Indefinite, techniques","Sequences & Series — Convergence tests","Taylor & Maclaurin Series"],ch:[YT.gs,YT.bb],pyq:[{n:"PYQ Calculus",u:P.ca}],nt:[N.ggcs]},
+    {id:"y1s4",nm:"C Programming",pr:"High",t:["Data Types, Operators & Precedence","Control Flow — if/else, loops, switch","Functions & Recursion — call stack","Arrays & Strings","Pointers — Pointer arithmetic, double pointers","Structures, Unions & Enums","Dynamic Memory — malloc, calloc, free","File Handling","Big-O Complexity — Time & Space","Command Line Arguments"],ch:[YT.jn,YT.na],pyq:[{n:"PYQ C Programming",u:P.cp}],nt:[N.ggcs]},
+    {id:"y1s5",nm:"General Aptitude — Verbal",pr:"Medium",t:["Reading Comprehension","Vocabulary & Synonyms/Antonyms","Grammar — Tenses, Articles, Prepositions","Critical Reasoning & Inference","Sentence Completion & Correction","Para Jumbles"],ch:[YT.gs],pyq:[{n:"PYQ GA Verbal",u:P.ga}],nt:[N.ggcs]},
+    {id:"y1s6",nm:"General Aptitude — Numerical",pr:"Medium",t:["Number Theory — HCF, LCM, Divisibility","Percentage, Profit & Loss","Ratio, Proportion & Mixtures","Speed, Distance & Time","Work & Pipes","Simple & Compound Interest","Permutation & Combination","Data Interpretation — Tables, Charts","Logical Puzzles & Series"],ch:[YT.gs],pyq:[{n:"PYQ GA Numerical",u:P.ga}],nt:[N.ggcs]},
+    {id:"y1s7",nm:"Revision System",pr:"High",t:["Weekly revision of completed topics","Monthly full revision","Maintain Formula Notebook","Solve PYQs after each topic","Error notebook — track mistakes","Weak topic re-study schedule"],ch:[],pyq:[{n:"Gate Overflow All PYQs",u:P.all}],nt:[N.goc]},
+  ]},
+  {id:"y2",yr:"Year 2",p:"2026-27",age:"19-20",em:"📗",c:"#34d399",d:"#064e3b",th:"Core CS — DSA, OS, DBMS, TOC, Digital Logic",subs:[
+    {id:"y2s1",nm:"Data Structures",pr:"High",t:["Arrays — 1D, 2D, operations","Linked Lists — Singly, Doubly, Circular","Stacks & Queues","Trees — Binary, BST, AVL, B-Tree, B+ Tree","Heaps — Min/Max, Heap sort","Graphs — Representation, BFS, DFS","Hashing — Hash functions, Collision handling","Sorting — Bubble, Selection, Insertion, Merge, Quick, Heap","Searching — Linear, Binary search variants","Tries & Segment Trees (basics)"],ch:[YT.gs,YT.ab],pyq:[{n:"PYQ Data Structures",u:P.ds}],nt:[N.ggds,N.stv]},
+    {id:"y2s2",nm:"Algorithms",pr:"High",t:["Asymptotic Analysis — Big-O, Omega, Theta","Recurrences — Master Theorem, Substitution","Divide & Conquer — Merge Sort, Quick Sort","Greedy — Activity Selection, Huffman, Fractional Knapsack","Dynamic Programming — LCS, LIS, 0/1 Knapsack, MCM, Edit Distance","Backtracking — N-Queens, Rat in Maze","Branch & Bound","Graph Algorithms — MST (Kruskal, Prim), Topological Sort","Shortest Paths — Dijkstra, Bellman-Ford, Floyd-Warshall","String Matching — KMP, Rabin-Karp","NP-Completeness — P, NP, NP-Hard, Reductions","Amortised Analysis"],ch:[YT.ab,YT.gs],pyq:[{n:"PYQ Algorithms",u:P.al}],nt:[N.ggal]},
+    {id:"y2s7",nm:"Digital Logic",pr:"High",t:["Number Systems — Binary, Octal, Hex, Conversions","Boolean Algebra — Laws, De Morgan's","K-Map Minimisation — 2,3,4 variable","Quine-McCluskey Method","Combinational Circuits — MUX, DEMUX, Encoder, Decoder, Adder","Sequential Circuits — Flip-Flops (SR, JK, D, T)","Registers & Counters","Timing Diagrams","PLDs — PLA, PAL"],ch:[YT.na,YT.gs],pyq:[{n:"PYQ Digital Logic",u:P.dl}],nt:[N.ggco]},
+    {id:"y2s3",nm:"Operating Systems",pr:"High",t:["Process vs Thread — PCB, States, Context Switch","CPU Scheduling — FCFS, SJF, SRTF, RR, Priority","Process Sync — Critical Section, Mutex, Semaphores","Classical Problems — Dining Philosophers, Producer-Consumer","Deadlock — Conditions, Prevention, Avoidance","Banker's Algorithm","Memory Management — Paging, Segmentation","Virtual Memory — Demand Paging, TLB","Page Replacement — FIFO, LRU, Optimal, Clock","Thrashing","File Systems — FAT, Inode, Allocation methods","Disk Scheduling — SSTF, SCAN, C-SCAN","I/O Systems & RAID"],ch:[YT.gs,YT.na],pyq:[{n:"PYQ OS",u:P.os}],nt:[N.ggos]},
+    {id:"y2s4",nm:"DBMS",pr:"High",t:["ER Model — Entities, Attributes, Relationships","Relational Model — Schema, Keys","Relational Algebra — Select, Project, Join","SQL — DDL, DML, DCL, TCL","Advanced SQL — Joins, Subqueries, Views, Triggers","Normalisation — 1NF, 2NF, 3NF, BCNF, 4NF","Functional Dependencies & Closure","Transactions — ACID Properties","Concurrency Control — 2PL, Timestamp Ordering","Indexing — B-Tree, B+ Tree, Dense/Sparse","Query Optimisation","Join Algorithms — Nested Loop, Hash Join","RAID Levels"],ch:[YT.gs,YT.sj],pyq:[{n:"PYQ DBMS",u:P.db}],nt:[N.ggdb]},
+    {id:"y2s5",nm:"Theory of Computation (TOC)",pr:"High",t:["DFA — Construction, Minimisation","NFA — Conversion to DFA","ε-NFA","Regular Expressions — Conversion to DFA/NFA","Regular Languages — Closure properties","Pumping Lemma for Regular Languages","Context-Free Grammars — Derivation, Parse Trees","Simplification of CFG — CNF, GNF","Pushdown Automata — DPDA vs NPDA","Pumping Lemma for CFL","Turing Machines — Design, Variants","Decidability — Halting Problem","Undecidability & Reducibility","P, NP, NP-Complete, NP-Hard"],ch:[YT.sj,YT.na],pyq:[{n:"PYQ TOC",u:P.tc}],nt:[N.ggtc]},
+    {id:"y2s6",nm:"Probability & Statistics",pr:"Medium",t:["Sample Space, Events, Probability Axioms","Conditional Probability & Independence","Bayes Theorem","Random Variables — Discrete & Continuous","Probability Distributions — Binomial, Poisson, Normal","Expected Value, Variance, Standard Deviation","Conditional Expectation","Markov Chains (basics)"],ch:[YT.gs],pyq:[{n:"PYQ Probability",u:P.pr}],nt:[N.ggcs]},
+    {id:"y2s8",nm:"Sectional Tests & Tracking",pr:"High",t:["Subject-wise timed tests after each subject","Maintain Error Notebook","Weak topic re-study schedule","Solve 10 years PYQ per subject","Time yourself — 1 mark ≈ 1.8 min"],ch:[],pyq:[{n:"Gate Overflow All PYQs",u:P.all}],nt:[N.goc]},
+  ]},
+  {id:"y3",yr:"Year 3",p:"2027-28",age:"20-21",em:"📙",c:"#a78bfa",d:"#3b1f6e",th:"Advanced Topics + GATE 2028 Practice Attempt",subs:[
+    {id:"y3s1",nm:"Computer Networks",pr:"High",t:["OSI Model — All 7 layers & functions","TCP/IP Model","Physical Layer — Nyquist, Shannon theorem","Data Link — MAC, CRC, Hamming, Sliding Window","Network Layer — IP Addressing, Subnetting, CIDR","IPv6 — Structure, Differences from IPv4","Routing — RIP, OSPF, BGP, Distance Vector, Link State","Transport Layer — TCP vs UDP","TCP — 3-way handshake, Flow & Congestion Control","Leaky Bucket & Token Bucket","Application Layer — DNS, HTTP, SMTP, FTP, DHCP","Network Security — SSL/TLS basics"],ch:[YT.gs,YT.rv],pyq:[{n:"PYQ Networks",u:P.cn}],nt:[N.ggcn]},
+    {id:"y3s2",nm:"Compiler Design",pr:"High",t:["Phases of Compilation overview","Lexical Analysis — Tokens, DFA for lexer","Syntax Analysis — CFG for programming languages","Top-Down Parsing — LL(1), Recursive Descent","First & Follow Sets computation","Bottom-Up Parsing — LR(0), SLR(1), LALR(1), CLR(1)","Parsing Table construction","Semantic Analysis — Type checking, SDT","Intermediate Code Generation — TAC, Quadruples","Code Optimisation — DAG, Common Subexpression","Code Generation basics"],ch:[YT.gs,YT.rv],pyq:[{n:"PYQ Compiler Design",u:P.cd}],nt:[N.ggcd]},
+    {id:"y3s3",nm:"Computer Organisation & Architecture",pr:"High",t:["Number Systems & 2's complement","IEEE 754 Floating Point","Combinational Design — ALU design","CPU Organisation — ALU, Control Unit, Data path","Instruction Set Architecture — RISC vs CISC","Instruction Formats & Addressing Modes","Memory Hierarchy — Registers, Cache, RAM","Cache Memory — Direct, Associative, Set Associative mapping","Cache Write policies & Numerical Problems","Pipelining — Stages, Data/Control/Structural Hazards","Booth's Algorithm — Multiplication","I/O Organisation — DMA, Interrupts"],ch:[YT.gs,YT.na],pyq:[{n:"PYQ COA",u:P.co}],nt:[N.ggco]},
+    {id:"y3s4",nm:"Mock Tests & GATE 2028 Attempt",pr:"High",t:["Join GATE Test Series — Made Easy / GATE Academy","Take 15-20 full-length mock tests","Solve GATE PYQ 2015-2027 completely","Appear in GATE 2028 (3rd year — practice attempt)","Target: Score 50+ in GATE 2028","Deep analysis of each mock — topic-wise error log","Revise weak areas from mocks"],ch:[],pyq:[{n:"All GATE PYQs",u:P.all}],nt:[N.goc]},
+  ]},
+  {id:"y4",yr:"Year 4",p:"2028-29",age:"21-22",em:"📕",c:"#f87171",d:"#5c1a1a",th:"Full Revision + GATE 2029 Main Target",subs:[
+    {id:"y4s1",nm:"Deep Revision — Sem 7",pr:"High",t:["Revise ALL subjects topic by topic","2 full mock tests every week from Oct 2028","Solve all PYQs 2010-2028","Revise formula notebook daily","Focus on NAT — no negative marking","Track & fix all weak topics"],ch:[YT.gs],pyq:[{n:"All GATE PYQs",u:P.all}],nt:[N.goc,N.ggcs]},
+    {id:"y4s2",nm:"Subject-Wise Final Revision",pr:"High",t:["DSA + Algorithms — aim 100% accuracy","Engineering Maths — all theorems + examples","OS — scheduling & page replacement numericals","DBMS — SQL queries + normalisation","TOC — re-derive pumping lemma proofs","Networks — subnetting practice daily","COA — pipeline timing, cache miss calculations","Compiler — parsing tables SLR/LALR"],ch:[YT.gs],pyq:[{n:"All GATE PYQs",u:P.all}],nt:[N.ggcs]},
+    {id:"y4s3",nm:"Final Sprint — Jan-Feb 2029",pr:"High",t:["Only mocks & revision — NO new topics from Jan","3 full mock tests per week","Analyse each mock within 24 hours","Revise formula notebook every single day","Sleep 8 hrs minimum — last 2 weeks","GATE 2029 Exam — February 2029 🎯"],ch:[],pyq:[{n:"All GATE PYQs",u:P.all}],nt:[N.goc]},
+  ]},
 ];
 
-// ════════════════════════════════════════════════════════════
-// RENDER
-// ════════════════════════════════════════════════════════════
-function load(key){ try{ return JSON.parse(localStorage.getItem(key)||'{}'); }catch(e){ return {}; } }
-function save(key,val){ localStorage.setItem(key,JSON.stringify(val)); }
+function ld(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}}
+function sv(k,v){localStorage.setItem(k,JSON.stringify(v))}
+const TS=ld('gate_v3');
 
-const topicState  = load('gate_topics');
-const subjectState= load('gate_subjects');
-
-function renderAll(){
-  const container = document.getElementById('years-container');
-  container.innerHTML='';
-  data.forEach(y => container.appendChild(renderYear(y)));
+function init(){
+  const c=document.getElementById('yc');c.innerHTML='';
+  DATA.forEach(y=>c.appendChild(buildY(y)));
   updateStats();
+  document.getElementById('y1').classList.add('open');
+  document.getElementById('y1b').style.display='block';
 }
 
-function renderYear(y){
-  const sec = document.createElement('div');
-  sec.className='year-section';
-  sec.id=y.id;
+function yProg(y){let t=0,d=0;y.subs.forEach(s=>{t+=s.t.length;d+=s.t.filter((_,i)=>!!TS[s.id+'_'+i]).length;});return{t,d,pct:t?Math.round(d/t*100):0};}
 
-  const totalTopics = y.subjects.reduce((a,s)=>a+s.topics.length,0);
-  const doneTopics  = y.subjects.reduce((a,s)=>a+s.topics.filter((_,i)=>topicState[s.id+'_'+i]).length,0);
-  const pct = totalTopics ? Math.round(doneTopics/totalTopics*100) : 0;
-
-  sec.innerHTML=`
-    <div class="year-header" style="background:linear-gradient(135deg,${y.darkColor},rgba(0,0,0,0.4));"
-         onclick="toggleYear('${y.id}')">
-      <div class="year-header-left">
-        <span class="year-emoji">${y.emoji}</span>
-        <div>
-          <div class="year-title" style="color:${y.color}">${y.year} · ${y.period} · Age ${y.age}</div>
-          <div class="year-sub">${y.theme}</div>
-        </div>
+function buildY(y){
+  const div=document.createElement('div');div.className='ysec';div.id=y.id;
+  const{pct}=yProg(y);
+  div.innerHTML=`
+    <div class="yhdr" style="background:linear-gradient(135deg,${y.d}ee,#0a0a0f);" onclick="togY('${y.id}')">
+      <div class="yleft"><span class="yemoji">${y.em}</span>
+        <div><div class="ytitle" style="color:${y.c}">${y.yr} · ${y.p} · Age ${y.age}</div><div class="ysub">${y.th}</div></div>
       </div>
-      <div class="year-progress">
-        <div class="year-pct" style="color:${y.color}">${pct}%</div>
-        <div class="chevron">⌄</div>
-      </div>
+      <div class="yright"><div class="ypct" style="color:${y.c}" id="yp${y.id}">${pct}%</div><div class="chev">⌄</div></div>
     </div>
-    <div class="year-body" id="${y.id}-body">
-      ${y.subjects.map(s=>renderSubject(s,y.color)).join('')}
-    </div>
-  `;
-  return sec;
+    <div class="ybody" id="${y.id}b">${y.subs.map(s=>buildS(s,y.c)).join('')}</div>`;
+  return div;
 }
 
-function renderSubject(s, yColor){
-  const done = s.topics.filter((_,i)=>topicState[s.id+'_'+i]).length;
-  const total= s.topics.length;
-  const allDone = done===total;
-
-  const links = [
-    ...s.channels.map(l=>`<a class="resource-link rl-yt" href="${l.url}" target="_blank">▶ ${l.name}</a>`),
-    ...s.pyq.map(l=>`<a class="resource-link rl-pyq" href="${l.url}" target="_blank">📄 ${l.name}</a>`),
-    ...(s.notes||[]).map(l=>`<a class="resource-link rl-notes" href="${l.url}" target="_blank">📝 ${l.name}</a>`),
-  ].join('');
-
-  return `
-  <div class="subject-card${allDone?' open':''}" id="sc-${s.id}">
-    <div class="subject-header" onclick="toggleSubject('${s.id}')">
-      <div class="subject-left">
-        <div class="subject-check${allDone?' done':''}" id="scheck-${s.id}"
-             onclick="event.stopPropagation();toggleSubjectAll('${s.id}',${s.topics.length})"
-             title="Mark all topics done">
-          ${allDone?'✓':''}
-        </div>
-        <div>
-          <div class="subject-name">${s.name}</div>
-          <div class="subject-count">${done}/${total} topics done</div>
-        </div>
-      </div>
-      <span class="priority-badge p-${s.priority.toLowerCase()}">${s.priority}</span>
-    </div>
-    <div class="subject-body" id="sb-${s.id}">
-      ${s.topics.map((t,i)=>{
-        const checked = !!topicState[s.id+'_'+i];
-        return `<div class="topic-item">
-          <input type="checkbox" class="topic-checkbox" style="color:${yColor}"
-            id="tc-${s.id}-${i}" ${checked?'checked':''}
-            onchange="toggleTopic('${s.id}',${i},${s.topics.length})">
-          <label for="tc-${s.id}-${i}" class="topic-text${checked?' checked-text':''}">${t}</label>
-        </div>`;
-      }).join('')}
-      <div class="resources-section">
-        <div class="resources-title">📚 Channels & Resources</div>
-        <div class="resource-links">${links}</div>
-      </div>
-    </div>
-  </div>`;
+function buildS(s,yc){
+  const done=s.t.filter((_,i)=>!!TS[s.id+'_'+i]).length,tot=s.t.length,all=done===tot&&tot>0;
+  const tH=s.t.map((t,i)=>{const ck=!!TS[s.id+'_'+i];return`<div class="trow"><input type="checkbox" class="tcb" id="tc${s.id}${i}" style="accent-color:${yc};" ${ck?'checked':''} onchange="togT('${s.id}',${i},${tot},'${yc}')"><label for="tc${s.id}${i}" class="tlbl${ck?' x':''}">${t}</label></div>`;}).join('');
+  let rH='';
+  if(s.ch&&s.ch.length)rH+=`<div class="rgrp"><div class="rglbl">▶ YouTube</div><div class="rlinks">${s.ch.map(c=>`<a class="rl ryt" href="${c.u}" target="_blank" rel="noopener">▶ ${c.n}</a>`).join('')}</div></div>`;
+  if(s.pyq&&s.pyq.length)rH+=`<div class="rgrp"><div class="rglbl">📄 PYQ on Gate Overflow</div><div class="rlinks">${s.pyq.map(p=>`<a class="rl rpyq" href="${p.u}" target="_blank" rel="noopener">📄 ${p.n}</a>`).join('')}</div></div>`;
+  if(s.nt&&s.nt.length)rH+=`<div class="rgrp"><div class="rglbl">📝 Free Notes</div><div class="rlinks">${s.nt.map(n=>`<a class="rl rnotes" href="${n.u}" target="_blank" rel="noopener">📝 ${n.n}</a>`).join('')}</div></div>`;
+  return`<div class="scard2" id="sc${s.id}"><div class="shdr" onclick="togS('${s.id}')"><div class="sleft"><div class="schk${all?' done':''}" id="sk${s.id}" onclick="event.stopPropagation();markAll('${s.id}',${tot})" title="Mark all done/undo">${all?'✓':''}</div><div><div class="sname">${s.nm}</div><div class="scnt" id="cnt${s.id}">${done}/${tot} topics done</div></div></div><span class="pbadge p${s.pr[0].toLowerCase()}">${s.pr}</span></div><div class="sbody" id="sb${s.id}">${tH}${rH?`<div class="resbox"><div class="reshd">📚 Resources</div>${rH}</div>`:''}</div></div>`;
 }
 
-function toggleYear(id){
-  const sec = document.getElementById(id);
-  sec.classList.toggle('open');
-}
-function toggleSubject(id){
-  const sc = document.getElementById('sc-'+id);
-  const sb = document.getElementById('sb-'+id);
-  sc.classList.toggle('open');
-  sb.style.display = sc.classList.contains('open') ? 'block':'none';
-}
-
-function toggleTopic(sid, idx, total){
-  const key = sid+'_'+idx;
-  const cb  = document.getElementById('tc-'+sid+'-'+idx);
-  const lbl = cb.nextElementSibling;
-  topicState[key] = cb.checked;
-  save('gate_topics', topicState);
-  lbl.classList.toggle('checked-text', cb.checked);
-  refreshSubjectCheck(sid, total);
-  updateStats();
-  updateYearProgress(sid);
-  showMotivation();
+function togY(id){const s=document.getElementById(id),b=document.getElementById(id+'b');s.classList.toggle('open');b.style.display=s.classList.contains('open')?'block':'none';}
+function togS(id){const sc=document.getElementById('sc'+id),sb=document.getElementById('sb'+id);sc.classList.toggle('open');sb.style.display=sc.classList.contains('open')?'block':'none';}
+function togT(sid,idx,tot){const key=sid+'_'+idx,cb=document.getElementById('tc'+sid+idx);TS[key]=cb.checked;sv('gate_v3',TS);cb.nextElementSibling.classList.toggle('x',cb.checked);refS(sid,tot);updateStats();refY(sid);mot();}
+function markAll(sid,tot){const all=Array.from({length:tot},(_,i)=>!!TS[sid+'_'+i]).every(Boolean);for(let i=0;i<tot;i++){TS[sid+'_'+i]=!all;const cb=document.getElementById('tc'+sid+i);if(cb){cb.checked=!all;cb.nextElementSibling.classList.toggle('x',!all);}}sv('gate_v3',TS);refS(sid,tot);updateStats();refY(sid);}
+function refS(sid,tot){const done=Array.from({length:tot},(_,i)=>!!TS[sid+'_'+i]).filter(Boolean).length,all=done===tot&&tot>0;const sk=document.getElementById('sk'+sid),cnt=document.getElementById('cnt'+sid);if(sk){sk.classList.toggle('done',all);sk.textContent=all?'✓':'';}if(cnt)cnt.textContent=`${done}/${tot} topics done`;}
+function refY(sid){DATA.forEach(y=>{if(y.subs.find(s=>s.id===sid)){const{pct}=yProg(y);const el=document.getElementById('yp'+y.id);if(el)el.textContent=pct+'%';}});}
+function updateStats(){let tT=0,dT=0,tS=0,dS=0;DATA.forEach(y=>y.subs.forEach(s=>{tS++;const done=s.t.filter((_,i)=>!!TS[s.id+'_'+i]).length;if(done===s.t.length&&s.t.length>0)dS++;tT+=s.t.length;dT+=done;}));const pct=tT?Math.round(dT/tT*100):0;document.getElementById('sDone').textContent=dT;document.getElementById('sLeft').textContent=tT-dT;document.getElementById('sSubj').textContent=dS;document.getElementById('sfD').style.width=pct+'%';document.getElementById('sfL').style.width=(100-pct)+'%';document.getElementById('sfS').style.width=tS?Math.round(dS/tS*100)+'%':'0%';document.getElementById('oPct').textContent=pct+'%';document.getElementById('ring').style.strokeDashoffset=352-(pct/100*352);}
+function mot(){const m=["🚀 You started at 18. You're ahead of everyone!","💪 Every tick brings you closer to IIT!","🔥 Consistency beats intensity. Keep going!","⭐ GATE 2029 is yours — stay on this path!","🎯 Focus. Revise. Practice. Repeat!","🏆 Top rankers start early. You already did!"];let dT=0,tT=0;DATA.forEach(y=>y.subs.forEach(s=>{tT+=s.t.length;dT+=s.t.filter((_,i)=>!!TS[s.id+'_'+i]).length;}));const pct=tT?Math.round(dT/tT*100):0;if(pct>=75)m.unshift("🌟 75%+ done! Final stretch — PUSH HARD!");else if(pct>=50)m.unshift("🔥 Halfway! Most aspirants haven't even started!");else if(pct>=25)m.unshift("💡 25%+ done. Momentum is building!");document.getElementById('mot').textContent=m[Math.floor(Math.random()*Math.min(5,m.length))];}
+// --- SYNC LOGIC ---
+function exportData() {
+  const dataString = btoa(JSON.stringify(TS));
+  const tempInput = document.createElement("input");
+  document.body.appendChild(tempInput);
+  tempInput.value = dataString;
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+  alert("🚀 Progress Code Copied!\n\nSave this code in your notes or send it to your other device.");
 }
 
-function toggleSubjectAll(sid, total){
-  const allChecked = Array.from({length:total},(_,i)=>!!topicState[sid+'_'+i]).every(Boolean);
-  for(let i=0;i<total;i++){
-    const key=sid+'_'+i;
-    topicState[key]=!allChecked;
-    const cb=document.getElementById('tc-'+sid+'-'+i);
-    const lbl=cb?.nextElementSibling;
-    if(cb){ cb.checked=!allChecked; }
-    if(lbl){ lbl.classList.toggle('checked-text',!allChecked); }
+function importData() {
+  const code = prompt("Paste your progress code here:");
+  if (code) {
+    try {
+      const decoded = JSON.parse(atob(code));
+      if (confirm("This will overwrite your current progress. Continue?")) {
+        localStorage.setItem('gate_v3', JSON.stringify(decoded));
+        location.reload();
+      }
+    } catch (e) {
+      alert("❌ Invalid Code. Please try again.");
+    }
   }
-  save('gate_topics',topicState);
-  refreshSubjectCheck(sid,total);
-  updateStats();
-  showMotivation();
 }
-
-function refreshSubjectCheck(sid, total){
-  const done = Array.from({length:total},(_,i)=>!!topicState[sid+'_'+i]).filter(Boolean).length;
-  const allDone = done===total;
-  const sc = document.getElementById('scheck-'+sid);
-  const count = document.querySelector(`#sc-${sid} .subject-count`);
-  if(sc){ sc.classList.toggle('done',allDone); sc.textContent=allDone?'✓':''; }
-  if(count){ count.textContent=`${done}/${total} topics done`; }
-}
-
-function updateYearProgress(sid){
-  // find which year
-  data.forEach(y=>{
-    if(y.subjects.find(s=>s.id===sid)){
-      const totalT=y.subjects.reduce((a,s)=>a+s.topics.length,0);
-      const doneT =y.subjects.reduce((a,s)=>a+s.topics.filter((_,i)=>topicState[s.id+'_'+i]).length,0);
-      const pct=totalT?Math.round(doneT/totalT*100):0;
-      const el=document.querySelector(`#${y.id} .year-pct`);
-      if(el) el.textContent=pct+'%';
-    }
-  });
-}
-
-function updateStats(){
-  let totalT=0,doneT=0,totalS=0,doneS=0;
-  data.forEach(y=>y.subjects.forEach(s=>{
-    totalS++;
-    const done=s.topics.filter((_,i)=>!!topicState[s.id+'_'+i]).length;
-    if(done===s.topics.length) doneS++;
-    totalT+=s.topics.length;
-    doneT+=done;
-  }));
-  const pct=totalT?Math.round(doneT/totalT*100):0;
-
-  document.getElementById('s-done').textContent=doneT;
-  document.getElementById('s-left').textContent=totalT-doneT;
-  document.getElementById('s-subj').textContent=doneS;
-  document.getElementById('sf-done').style.width=pct+'%';
-  document.getElementById('sf-left').style.width=(100-pct)+'%';
-  document.getElementById('sf-subj').style.width=totalS?Math.round(doneS/totalS*100)+'%':'0%';
-  document.getElementById('overallPct').textContent=pct+'%';
-
-  const circ=2*Math.PI*65;
-  const offset=circ-(pct/100*circ);
-  document.getElementById('mainRing').style.strokeDashoffset=offset;
-}
-
-function showMotivation(){
-  let doneT=0,totalT=0;
-  data.forEach(y=>y.subjects.forEach(s=>{
-    totalT+=s.topics.length;
-    doneT+=s.topics.filter((_,i)=>!!topicState[s.id+'_'+i]).length;
-  }));
-  const pct=totalT?Math.round(doneT/totalT*100):0;
-  const msgs=[
-    "🚀 You started at 18. You're ahead of everyone. Let's go!",
-    "💪 Every topic you check off is a step closer to IIT!",
-    "🔥 Consistency beats intensity. Keep going!",
-    "⭐ GATE 2029 is yours if you stay on this path!",
-    "🎯 Focus. Revise. Practice. Repeat. You've got this!",
-    "🏆 Top rankers start early. You already did. Win!",
-  ];
-  if(pct>=75) msgs.unshift("🌟 75%+ done! You're in the final stretch — PUSH!");
-  else if(pct>=50) msgs.unshift("🔥 Halfway there! Most aspirants haven't even started. Keep going!");
-  else if(pct>=25) msgs.unshift("💡 Great start! 25%+ done. Momentum is building!");
-  const el=document.getElementById('motive-text');
-  el.textContent=msgs[Math.floor(Math.random()*Math.min(4,msgs.length))];
-}
-
-// Init
-renderAll();
-// Open year 1 by default
-document.getElementById('y1').classList.add('open');
-document.getElementById('y1-body').style.display='block';
-showMotivation();
-
-// ════════════════════════════════════════════════════════════
-// SYNC LOGIC (EXPORT/IMPORT)
-// ════════════════════════════════════════════════════════════
-
-function exportProgress() {
-    // Your app uses two keys: 'gate_topics' and 'gate_subjects'
-    const topics = localStorage.getItem('gate_topics') || '{}';
-    const subjects = localStorage.getItem('gate_subjects') || '{}';
-    
-    // Combine them into one "Master String"
-    const backup = JSON.stringify({ topics: JSON.parse(topics), subjects: JSON.parse(subjects) });
-    
-    // Copy to clipboard
-    navigator.clipboard.writeText(backup).then(() => {
-        alert("🚀 PROGRESS COPIED!\n\nYour progress has been copied as a secret code. Paste this code into a message (WhatsApp/Email) to yourself, then open it on your other device.");
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-        alert("Error copying code. Please try again.");
-    });
-}
-
-function importProgress() {
-    const code = prompt("📥 PASTE YOUR PROGRESS CODE HERE:");
-    
-    if (code) {
-        try {
-            const parsed = JSON.parse(code);
-            
-            // Validate that the code contains our data
-            if (parsed.topics) {
-                localStorage.setItem('gate_topics', JSON.stringify(parsed.topics));
-                if (parsed.subjects) localStorage.setItem('gate_subjects', JSON.stringify(parsed.subjects));
-                
-                alert("✅ SUCCESS!\n\nYour progress has been imported. The page will now refresh.");
-                location.reload();
-            } else {
-                alert("❌ INVALID CODE\n\nThat doesn't look like a valid tracker code. Please copy the full text from your other device.");
-            }
-        } catch (e) {
-            alert("❌ ERROR\n\nSomething went wrong. Make sure you copied the ENTIRE code string.");
-        }
-    }
-}
-  
+init();
 </script>
 </body>
 </html>
