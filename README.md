@@ -1,4 +1,4 @@
-# ⚡ GATE CSE 2029: The 4-Year Mission Control
+# ⚡ GATE CE 2029: The 4-Year Mission Control
 An interactive, browser-based roadmap and progress tracker for the **GATE Computer Science & IT** examination.
 
 ## 📌 The Vision
