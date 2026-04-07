@@ -50,3 +50,8 @@ This is a single-file "App" designed for simplicity and speed.
 3. **Check off** topics as you complete them; your progress persists automatically in your browser!
 
 
+---
+
+## 📄 License
+This project is licensed under the **MIT License**. See the `LICENSE` file for full details.
+
