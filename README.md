@@ -3,8 +3,8 @@ An interactive, browser-based roadmap and progress tracker for the **GATE Comput
 ---
 <p align="center">
   <strong>🔗 Access the Live Tracker:</strong> 
-  <a href="https://pranjal-lahamge.github.io/GATE-TRACKER-2029/">
-    <b>https://pranjal-lahamge.github.io/GATE-TRACKER-2029/</b>
+  <a href="https://pranjal-lahamge.github.io/gate-tracker-2029/">
+    <b>https://pranjal-lahamge.github.io/gate-tracker-2029/</b>
   </a>
 </p>
 
